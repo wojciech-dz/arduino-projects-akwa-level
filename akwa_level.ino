@@ -79,32 +79,7 @@ LED leds[COUNT] = {
   { akt_level, akt_level, LED_COLD }
 };
 
-//const int INTERVALS_COUNT = 19;
-
-//Interval intervals[INTERVALS_COUNT] = {
-//  { Night,  730,  830,  50 },
-//  { Cold,   730,  800,  30 },
-//  { Cold,   800,  830,  50 },
-//  { Day,    815,  900,  30 },
-//  { Cold,   831, 1300, 255 },
-//  { Night,  831,  915, 250 },
-//  { Day,    901, 1300, 255 },
-//  { RB,     915, 1245, 255 },
-//  { Cold,  1500, 2000, 255 },
-//  { RB,    1515, 1930, 255 },
-//  { Day,   1515, 2000, 255 },
-//  { Night, 1930, 2200, 150 },
-//  { Day,   2001, 2100,  50 },
-//  { Cold,  2001, 2100,  40 },
-//  { RB,    2100, 2130,  10 },
-//  { Day,   2101, 2130,  20 },
-//  { Cold,  2101, 2200,  10 },
-//  { Cold,  2201, 2230,   5 },
-//  { Night, 2201, 2230,   8 },
-//};
-
-// const int INTERVALS_COUNT = 13;
-// Interval intervals[INTERVALS_COUNT] = {
+const int INTERVALS_COUNT = 13;
 Interval intervals[INTERVALS_COUNT] = {
   { Night,  550,  700,  20 },
   { Cold,   600,  700,  20 },
@@ -144,7 +119,7 @@ void setup() {
   sensors.begin();
   sensors.request(address);
 
-  // następna linia do ustawienia zegarka, normalnie wyremowana
+  // następna linia do ustawienia zegarka, normalnie wykomentowana
   // clock.setDateTime(__DATE__, __TIME__);
 
   for (int i = 0; i < COUNT; ++i) {
@@ -169,9 +144,6 @@ void loop() {
 
   dt = clock.getDateTime();
   teraz = 100 * dt.hour + dt.minute;
-  // if (teraz == 200) {        // korekta nedznego, chinskiego wzorca czasu
-  //   clock.setDateTime(dt.year, dt.month, dt.day, dt.hour, 03, 00);
-  // }
   Serial.println();
   Serial.println(clock.dateFormat("d-m-Y H:i:s", dt));
   Serial.println(teraz);
